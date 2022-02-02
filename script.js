@@ -113,7 +113,7 @@ function cancelButtonAccion() {
       document.getElementById('cancel-button').remove();
       break;
     case 'update':
-      if (document.getElementById('cancel-button')) {
+      if (document.getElementById('cancel-button') !== null) {
         return;
       }
 
@@ -124,7 +124,7 @@ function cancelButtonAccion() {
         cancelButton.remove();
         formText = 'create';
         formGarmet.reset();
-        accionForm();
+        nameButtonText();
       });
       containerButtons.appendChild(cancelButton);
       break;
