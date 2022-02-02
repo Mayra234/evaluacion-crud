@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>Prendas de ropa</h1>
+    </header>
+    <div>
+      <form id="form-garmet">
+        <div>
+          <label for="name">Nombre</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div>
+          <label for="size">Talla</label>
+          <input type="text" name="size" id="size" />
+        </div>
+        <div>
+          <label for="brand">Marca</label>
+          <input type="text" name="brand" id="brand" />
+        </div>
+        <div>
+          <label for="quantity">Cantidad</label>
+          <input type="text" name="quantity" id="quantity" />
+        </div>
+        <div id="container-buttons">
+          <button type="button" id="add">Crear</button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <table id="table-garmets">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Talla</th>
+            <th>Marca</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <!-- ventana modal -->
+      <div id="view-garmet" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="libs/bootstrap-5.0.2/js/bootstrap.min.js"></script>
+  <script src="mocks/garmets.js"></script>
+  <script src="script.js"></script>
+</html>
