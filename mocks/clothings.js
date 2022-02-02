@@ -1,4 +1,4 @@
-let garmets = [
+let clothings = [
   {
     name: 'Blusa',
     size: 'S',

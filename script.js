@@ -1,90 +1,90 @@
-const formGarmet = document.getElementById('form-garmet');
-const nameGarmet = document.getElementById('name');
-const sizeGarmet = document.getElementById('size');
-const brandGarmet = document.getElementById('brand');
-const quantityGarmet = document.getElementById('quantity');
+const formClothing = document.getElementById('form-clothing');
+const nameClothing = document.getElementById('name');
+const sizeClothing = document.getElementById('size');
+const brandClothing = document.getElementById('brand');
+const quantityClothing = document.getElementById('quantity');
 const containerButtons = document.getElementById('container-buttons');
-const addGarmet = document.getElementById('add');
-const tableGarmets = document.querySelector('#table-garmets tbody');
+const addClothing = document.getElementById('add');
+const tableClothings = document.querySelector('#table-clothings tbody');
 
-let garmetIndex = undefined;
+let clothingIndex = undefined;
 let formText = 'create';
 
-let currentGarmet = {
+let currentClothing = {
   name: '',
   size: '',
   brand: '',
   quantity: '',
 };
 
-nameGarmet.addEventListener('input', (event) => {
-  currentGarmet.name = event.target.value;
+nameClothing.addEventListener('input', (event) => {
+  currentClothing.name = event.target.value;
 });
-sizeGarmet.addEventListener('input', (event) => {
-  currentGarmet.size = event.target.value;
+sizeClothing.addEventListener('input', (event) => {
+  currentClothing.size = event.target.value;
 });
-brandGarmet.addEventListener('input', (event) => {
-  currentGarmet.brand = event.target.value;
+brandClothing.addEventListener('input', (event) => {
+  currentClothing.brand = event.target.value;
 });
-quantityGarmet.addEventListener('input', (event) => {
-  currentGarmet.quantity = event.target.value;
+quantityClothing.addEventListener('input', (event) => {
+  currentClothing.quantity = event.target.value;
 });
 
 // botones
-containerButtons.addEventListener('click', accionForm);
+addClothing.addEventListener('click', accionForm);
 
 // lista
-function listGarmets() {
-  tableGarmets.innerHTML = '';
+function listClothings() {
+  tableClothings.innerHTML = '';
 
-  garmets.forEach((garmet, index) => {
+  clothings.forEach((clothing, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <th>${index + 1}</th>
-      <td>${garmet.name}</td>
-      <td>${garmet.size}</td>
-      <td>${garmet.brand}</td>
-      <td>${garmet.quantity}</td>
+      <td>${clothing.name}</td>
+      <td>${clothing.size}</td>
+      <td>${clothing.brand}</td>
+      <td>${clothing.quantity}</td>
       <td>
         <button 
             type="button"
-            onclick="loadGarmetForm(${index})"
+            onclick="loadClothingForm(${index})"
         >
         Actualizar
         </button>
         <button
             type="button"
-            onclick="showGarmet(${index})"
+            onclick="showClothing(${index})"
         >
         Mirar
         </button>
         <button
             type="button"
-            onclick="deleteGarmet(${index})"
+            onclick="deleteClothing(${index})"
         > 
         Eliminar
         </button>
       </td>
       `;
-    tableGarmets.appendChild(row);
+    tableClothings.appendChild(row);
   });
 }
 
 // crear prendas
-function createGarmet() {
-  garmets.push(Object.assign({}, currentGarmet));
-  listGarmets();
-  formGarmet.reset();
+function createClothing() {
+  clothings.push(Object.assign({}, currentClothing));
+  listClothings();
+  formClothing.reset();
 }
 
 // texto del botton dependiendo del tipo de formulario
 function nameButtonText() {
   switch (formText) {
     case 'create':
-      addGarmet.innerText = 'Crear';
+      addClothing.innerText = 'Crear';
       break;
     case 'update':
-      addGarmet.innerText = 'Actualizar';
+      addClothing.innerText = 'Actualizar';
       break;
 
     default:
@@ -96,10 +96,10 @@ function nameButtonText() {
 function accionForm() {
   switch (formText) {
     case 'create':
-      createGarmet();
+      createClothing();
       break;
     case 'update':
-      updateGarmet();
+      updateClothing();
       break;
     default:
       break;
@@ -123,7 +123,7 @@ function cancelButtonAccion() {
       cancelButton.addEventListener('click', () => {
         cancelButton.remove();
         formText = 'create';
-        formGarmet.reset();
+        formClothing.reset();
         nameButtonText();
       });
       containerButtons.appendChild(cancelButton);
@@ -134,53 +134,53 @@ function cancelButtonAccion() {
 }
 
 // actualizar
-function updateGarmet() {
-  garmets[garmetIndex] = Object.assign({}, currentGarmet);
-  listGarmets();
-  formGarmet.reset();
+function updateClothing() {
+  clothings[clothingIndex] = Object.assign({}, currentClothing);
+  listClothings();
+  formClothing.reset();
   formText = 'create';
   nameButtonText();
   cancelButtonAccion();
 }
 
-function loadGarmetForm(index) {
+function loadClothingForm(index) {
   formText = 'update';
-  garmetIndex = index;
-  currentGarmet = Object.assign({}, garmets[index]);
-  nameGarmet.value = currentGarmet.name;
-  sizeGarmet.value = currentGarmet.size;
-  brandGarmet.value = currentGarmet.brand;
-  quantityGarmet.value = currentGarmet.quantity;
+  clothingIndex = index;
+  currentClothing = Object.assign({}, clothings[index]);
+  nameClothing.value = currentClothing.name;
+  sizeClothing.value = currentClothing.size;
+  brandClothing.value = currentClothing.brand;
+  quantityClothing.value = currentClothing.quantity;
   nameButtonText();
   cancelButtonAccion();
 }
 
 // eliminar
-function deleteGarmet(index) {
-  garmets = garmets.filter((_, i) => {
+function deleteClothing(index) {
+  clothings = clothings.filter((_, i) => {
     return i !== index;
   });
-  listGarmets();
+  listClothings();
 }
 
 // mirar
-const modalHtmlElement = document.getElementById('view-garmet');
+const modalHtmlElement = document.getElementById('view-clothing');
 const bootstrapModal = new bootstrap.Modal(modalHtmlElement);
 
-function showGarmet(index) {
-  const modalTitle = document.querySelector('#view-garmet .modal-title');
-  const modalBody = document.querySelector('#view-garmet .modal-body');
+function showClothing(index) {
+  const modalTitle = document.querySelector('#view-clothing .modal-title');
+  const modalBody = document.querySelector('#view-clothing .modal-body');
   bootstrapModal.show();
   modalBody.innerHTML = `
   <ul>
-    <li><b>Nombre: </b>${garmets[index].name}</li>
-    <li><b>Talla: </b>${garmets[index].size}</li>
-    <li><b>Marca: </b>${garmets[index].brand}</li>
-    <li><b>Cantidad: </b>${garmets[index].quantity}</li>
+    <li><b>Nombre: </b>${clothings[index].name}</li>
+    <li><b>Talla: </b>${clothings[index].size}</li>
+    <li><b>Marca: </b>${clothings[index].brand}</li>
+    <li><b>Cantidad: </b>${clothings[index].quantity}</li>
   </ul>
   `;
-  modalTitle.innerText = garmets[index].name;
+  modalTitle.innerText = clothings[index].name;
 }
 
 // llamado de funciones
-listGarmets();
+listClothings();
